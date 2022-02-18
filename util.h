@@ -11,18 +11,13 @@
   var;                                                                         \
   wrap(start, end)
 
-#define dummy(parent_struct) ((parent_struct *)0)
+#define dummy(type) ((type *)0)
 
-#define sizeof_member(parent_struct, member_name)                              \
-  sizeof(dummy(parent_struct)->member_name)
+#define sizeof_member(type, member)                                            \
+  sizeof(dummy(type)->member)
 
 #define container_of(ptr, type, member)                                        \
   ((type *)_p_container_of(ptr, dummy(type), member))
 #define _p_container_of(o, p, m) ((char *)o - ((char *)&p->m))
-
-struct vec {
-  int x;
-  int y;
-};
 
 #endif // UTIL_H_
